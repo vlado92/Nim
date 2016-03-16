@@ -5,10 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class MainFrame extends JFrame{
-    private final static int FRAME_HEIGHT = 500;
-    private final static int FRAME_WIDTH = 500;
-
-    
+    private final static int FRAME_HEIGHT = 450;
+    private final static int FRAME_WIDTH = 600;
     
     Panel panel = new Panel();
     

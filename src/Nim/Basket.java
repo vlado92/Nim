@@ -7,15 +7,15 @@ import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 
-public class Tree {
-    private Rectangle2D.Double rectangle;
-    static BufferedImage treeImage = null;
+public class Basket {
+private Rectangle2D.Double rectangle;
+    static BufferedImage basketImage = null;
     private int x;
     private int y;
     private int WIDHT;
     private int HIGHT;
 
-    public Tree(int x, int y, int WIDHT, int HIGHT) {
+    public Basket(int x, int y, int WIDHT, int HIGHT) {
         this.x = x;
         this.y = y;
         this.WIDHT = WIDHT;
@@ -47,12 +47,13 @@ public class Tree {
     
     public static void loadImages() {
         try {
-            treeImage = ImageIO.read(new File("C:\\picturesForNim\\tree.jpg"));
+            basketImage = ImageIO.read(new File("C:\\picturesForNim\\basket.jpg"));
+            System.out.println("uzelo sliku sa kompa");
         } catch (IOException ex) {
             try {
-                URL url = new URL("http://images.all-free-download.com/images/graphiclarge/tree_vector_147863.jpg");
-
-                treeImage = ImageIO.read(url);
+                System.out.println("uzelo sliku sa neta");
+                URL url = new URL("http://www.wtv-zone.com/LaDeBoheme/studio/basket/basket.jpg");
+                basketImage = ImageIO.read(url);
             } catch (IOException e) { 
                 Main.connect();
             }
@@ -60,6 +61,6 @@ public class Tree {
     }
 
     public static BufferedImage getImage() {
-        return treeImage;
-    }
+        return basketImage;
+    }    
 }
