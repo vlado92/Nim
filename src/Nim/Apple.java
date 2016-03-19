@@ -1,15 +1,11 @@
 package Nim;
 
-import java.awt.Frame;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 public class Apple {
     private Rectangle2D.Double rectangle;
@@ -18,6 +14,7 @@ public class Apple {
     private int y;
     private int WIDHT;
     private int HIGHT;
+    private boolean appleExist;
 
     public Apple(int x, int y, int WIDHT, int HIGHT) {
         this.x = x;
@@ -26,7 +23,16 @@ public class Apple {
         this.HIGHT = HIGHT;
         rectangle = new Rectangle2D.Double(x, y, WIDHT, HIGHT);
     }
-
+    
+    public void setAppleExistance(boolean state){
+        appleExist = state;
+    }
+    
+    public boolean appleExist()
+    {
+        return appleExist;
+    }
+    
     public Rectangle2D.Double getRectangle() {
         rectangle.x = x;
         return rectangle;

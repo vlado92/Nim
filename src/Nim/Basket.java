@@ -1,5 +1,7 @@
 package Nim;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,21 +9,30 @@ import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 
-public class Basket {
+public class Basket{
 private Rectangle2D.Double rectangle;
     static BufferedImage basketImage = null;
     private int x;
     private int y;
     private int WIDHT;
     private int HIGHT;
+    private int count;
 
     public Basket(int x, int y, int WIDHT, int HIGHT) {
         this.x = x;
         this.y = y;
         this.WIDHT = WIDHT;
         this.HIGHT = HIGHT;
-
+        count = 0;
+        
         rectangle = new Rectangle2D.Double(x, y, WIDHT, HIGHT);
+    }
+
+    public void setCount(int number){
+        count = number;
+    }
+    public int getCount() {
+        return count;
     }
 
     public Rectangle2D.Double getRectangle() {
@@ -62,5 +73,5 @@ private Rectangle2D.Double rectangle;
 
     public static BufferedImage getImage() {
         return basketImage;
-    }    
+    }
 }
