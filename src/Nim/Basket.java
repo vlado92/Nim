@@ -10,13 +10,14 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 public class Basket{
-private Rectangle2D.Double rectangle;
+    private Rectangle2D.Double rectangle;
     static BufferedImage basketImage = null;
     private int x;
     private int y;
     private int WIDHT;
     private int HIGHT;
     private int count;
+    private int maxCount;
 
     public Basket(int x, int y, int WIDHT, int HIGHT) {
         this.x = x;
@@ -31,27 +32,28 @@ private Rectangle2D.Double rectangle;
     public void setCount(int number){
         count = number;
     }
+    public int getMaxCount() {
+        return maxCount;
+    }
+    public void setMaxCount(int maxCount) {
+        this.maxCount = maxCount;
+    }
     public int getCount() {
         return count;
     }
-
     public Rectangle2D.Double getRectangle() {
         rectangle.x = x;
         return rectangle;
     }
-
     public int getWIDHT() {
         return WIDHT;
     }
-
     public int getHIGHT() {
         return HIGHT;
     }
-
     public int getX() {
         return x;
     }
-
     public int getY() {
         return y;
     }
@@ -70,7 +72,6 @@ private Rectangle2D.Double rectangle;
             }
         }
     }
-
     public static BufferedImage getImage() {
         return basketImage;
     }
