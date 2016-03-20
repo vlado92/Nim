@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 public class Main {
     static MainFrame fram;
     public static void main(String[] args) {
-         fram = new MainFrame();
+          OptionFrame form = new OptionFrame();
+          form.setVisible(true);
+        //fram = new MainFrame();
     }
     static void connect() {
     
