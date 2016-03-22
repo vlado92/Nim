@@ -29,7 +29,6 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
     private JLabel[] labelNumberOfApplesOnEachTree = null;
     private JLabel MistakeLabel = null;
     private JButton acceptButton = null;
-    private boolean treeDone = false;
     private JRadioButton[] playOrder;
     private OptionFrame fra;
     
@@ -46,18 +45,20 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
         addTypeOfGame();
         addTypeOfPlayers();
         addNumberOfTrees();
+        addNumberOfApplesOnTree(Integer.parseInt(numberOfTrees.getSelectedItem().toString()));
+        addPlayOrder();
+
         addButton();
     }
-    private void addTypeOfGame(){
-        
-        labelForTypeOfGame = new JLabel("Select type of game:");
-        labelForTypeOfGame.setBounds(0, 0, 150, 30);
+    private void addTypeOfGame(){  
+        labelForTypeOfGame = new JLabel(LanguagePack.setText(LanguagePack.getLanguage(), "Select type of game:"));
+        labelForTypeOfGame.setBounds(0, 0, 225, 30);
         
         typeOfGame = new JRadioButton[2];
         typeOfGame[0] = new JRadioButton("Misere");
-        typeOfGame[0].setBounds(150, 0, 200, 15);
+        typeOfGame[0].setBounds(230, 0, 200, 15);
         typeOfGame[1] = new JRadioButton("Normal");
-        typeOfGame[1].setBounds(150, 20, 200, 15);
+        typeOfGame[1].setBounds(230, 20, 200, 15);
         typeOfGame[0].addActionListener(this);
         typeOfGame[1].addActionListener(this);
         
@@ -68,15 +69,17 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
         typeOfGame[0].setSelected(true);
     }
     private void addTypeOfPlayers(){
-        labelTypeOfPlayers = new JLabel("Select oponent:");
+        labelTypeOfPlayers = new JLabel(LanguagePack.setText(LanguagePack.getLanguage(), "Select oponent:"));
         labelTypeOfPlayers.setBounds(0, 40, 200, 30);
         
-        humanPlayer = new JRadioButton("Human");
+        humanPlayer = new JRadioButton(LanguagePack.setText(LanguagePack.getLanguage(), 
+                "Human"));
         humanPlayer.setVisible(true);
         humanPlayer.setBounds(150, 40, 75, 40);
         humanPlayer.addActionListener(this);
         
-        computerPlayer = new JRadioButton("Computer");
+        computerPlayer = new JRadioButton(LanguagePack.setText(LanguagePack.getLanguage(), 
+                "Computer"));
         computerPlayer.setVisible(true);
         computerPlayer.setBounds(225, 40, 100, 40);
         computerPlayer.addActionListener(this);
@@ -88,8 +91,8 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
         humanPlayer.setSelected(true);
     }
     private void addNumberOfTrees(){
-        labelNumberOfTrees = new JLabel("Select number of trees:");
-        labelNumberOfTrees.setBounds(0, 90, 150, 30);
+        labelNumberOfTrees = new JLabel(LanguagePack.setText(LanguagePack.getLanguage(), "Select number of trees:"));
+        labelNumberOfTrees.setBounds(0, 90, 225, 30);
     
         Integer[] inte = new Integer[3];
         for(int i=2; i<5; i++)
@@ -98,7 +101,7 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
         }
         numberOfTrees = new JComboBox(inte);
         numberOfTrees.setVisible(true);
-        numberOfTrees.setBounds(150, 90, 75, 25);
+        numberOfTrees.setBounds(230, 90, 75, 25);
         numberOfTrees.addActionListener(this);
         
         add(labelNumberOfTrees);
@@ -117,13 +120,13 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
         }
         else{
             firstIteration = false;
-            labelNumberOfApples = new JLabel("Select number of Apples");
-            labelNumberOfApples.setBounds(0, 130, 150, 15);
+            labelNumberOfApples = new JLabel(LanguagePack.setText(LanguagePack.getLanguage(), "Select number of Apples:"));
+            labelNumberOfApples.setBounds(0, 130, 225, 15);
             
             MistakeLabel = new JLabel();
             MistakeLabel.setBounds(160, 160, 200, 40);
             
-            JLabel hint = new JLabel("(Hint: 0 means random)");
+            JLabel hint = new JLabel(LanguagePack.setText(LanguagePack.getLanguage(), "(Hint: 0 means random)"));
             hint.setBounds(0, 145, 150, 20);
             hint.setFont(new Font("Arial", Font.PLAIN, 8));
 
@@ -137,11 +140,12 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
         
         
         for(int i = 0; i< noOfTres; i++){
-            labelNumberOfApplesOnEachTree[i] = new JLabel("Tree " + (1+i));
-            labelNumberOfApplesOnEachTree[i].setBounds(i*50+160, 105, 60, 40);
+            labelNumberOfApplesOnEachTree[i] = new JLabel(
+                    LanguagePack.setText(LanguagePack.getLanguage(), "Tree ") + (1+i));
+            labelNumberOfApplesOnEachTree[i].setBounds(i*50+200, 105, 60, 40);
             
             numberOfApplesOnTree[i] = new JTextField();
-            numberOfApplesOnTree[i].setBounds(i*50+160, 135, 30, 30);
+            numberOfApplesOnTree[i].setBounds(i*50+200, 135, 30, 30);
             numberOfApplesOnTree[i].addKeyListener(this);
             numberOfApplesOnTree[i].setText("0");
             add(labelNumberOfApplesOnEachTree[i]);
@@ -151,18 +155,18 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
     }
     private void addButton(){
         acceptButton = new JButton();
-        acceptButton.setText("Accept Option");
+        acceptButton.setText(LanguagePack.setText(LanguagePack.getLanguage(), "Accept settings"));
         acceptButton.setBounds(0, 250, OptionFrame.getFRAME_WIDTH(), 50);
         acceptButton.addActionListener(this);
-        acceptButton.setEnabled(false);
+        isDone();
         add(acceptButton);
     }
     private void addPlayOrder(){
         playOrder = new JRadioButton[2];
-        playOrder[0] = new JRadioButton("Play first");
-        playOrder[0].setBounds(0, 200, 100, 35);
-        playOrder[1] = new JRadioButton("Play second");
-        playOrder[1].setBounds(150, 200, 100, 35);
+        playOrder[0] = new JRadioButton(LanguagePack.setText(LanguagePack.getLanguage(), "Play first"));
+        playOrder[0].setBounds(0, 200, 140, 35);
+        playOrder[1] = new JRadioButton(LanguagePack.setText(LanguagePack.getLanguage(), "Play second"));
+        playOrder[1].setBounds(150, 200, 140, 35);
         playOrder[0].addActionListener(this);
         playOrder[1].addActionListener(this);
         
@@ -170,10 +174,15 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
         add(playOrder[1]);
         
         playOrder[0].setSelected(true);
+        if(!computerPlayer.isSelected()){
+            setPlayOrderVisible(false);
+        }
+        else
+            setPlayOrderVisible(true);
     }
     
     private void isDone(){
-        if(treeDone && TypeOfGameDone() && TypeOfPlayerDone()&&ApplesDone() && PlayOrderDone())
+        if(TypeOfGameDone() && TypeOfPlayerDone()&&ApplesDone() && PlayOrderDone())
             acceptButton.setEnabled(true);
         else
             acceptButton.setEnabled(false);
@@ -204,6 +213,9 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
             return false;
     }
     private void setPlayOrderVisible(boolean visible){
+        if(!(playOrder[0].isSelected() && playOrder[1].isSelected()))
+            playOrder[0].setSelected(true);
+        
         playOrder[0].setVisible(visible);
         playOrder[1].setVisible(visible);
     }
@@ -219,24 +231,19 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
                 typeOfGame[0].setSelected(false);
         }
         else if(humanPlayer.isFocusOwner()){
-            if(computerPlayer.isSelected()){
+            if(computerPlayer.isSelected())
                 computerPlayer.setSelected(false);
-                if(treeDone)
-                    setPlayOrderVisible(false);
-            }
+            setPlayOrderVisible(false);
         }
         else if(computerPlayer.isFocusOwner()){
             if(humanPlayer.isSelected()){
                 humanPlayer.setSelected(false);
-                if(treeDone)
-                    setPlayOrderVisible(true);
+                setPlayOrderVisible(true);
             }   
         }
         else if(numberOfTrees.isFocusOwner())
         {
-            treeDone = true;
             addNumberOfApplesOnTree(Integer.parseInt(numberOfTrees.getSelectedItem().toString()));
-            addPlayOrder();
             if(!computerPlayer.isSelected())
                 setPlayOrderVisible(false);
             else
@@ -280,7 +287,8 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
         else if(ke.getKeyChar() == KeyEvent.VK_ENTER);
         else if(ke.getKeyChar()< '0' || ke.getKeyChar() > '9')
         {
-            MistakeLabel.setText("Please use only numbers");
+            MistakeLabel.setText(LanguagePack.setText(LanguagePack.getLanguage(), 
+                    "Please use only numbers"));
             MistakeLabel.setVisible(true);
             ke.consume();
         }
@@ -295,7 +303,8 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
                         numberOfApplesOnTree[i].getText())*10+ (ke.getKeyChar()-'0');
                     if(inputedNumber > 50)
                     {
-                        MistakeLabel.setText("Maximal number of apples is 50");
+                        MistakeLabel.setText(LanguagePack.setText(LanguagePack.getLanguage(), 
+                                "Maximal number of apples is 50"));
                         MistakeLabel.setVisible(true);
                         ke.consume();
                     }

@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class OptionFrame extends JFrame{
-    private static final int FRAME_WIDTH = 360;
+    private static final int FRAME_WIDTH = 400;
     private static final int FRAME_HEIGHT = 320;
 
     public static int getFRAME_WIDTH() {

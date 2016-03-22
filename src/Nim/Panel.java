@@ -127,7 +127,7 @@ public class Panel extends JPanel implements ActionListener {
         }
     }
     private void addFinishButton() {
-        finished = new JButton("Finish move");
+        finished = new JButton(LanguagePack.setText(LanguagePack.getLanguage(), "Finish move"));
         finished.setVisible(true);
         finished.setBounds(PANEL_WIDTH / 2 - 60, PANEL_HEIGHT - 20, 120, 40);
         finished.setName("" + (numberOfTree));
@@ -188,7 +188,7 @@ public class Panel extends JPanel implements ActionListener {
         g2d.drawImage(Apple.getImage(), apple[i][j].getX(), apple[i][j].getY(), apple[i][j].getWIDHT(), apple[i][j].getHIGHT(), null);
     }
     private void drawPlayer(Graphics2D g2d, boolean player) {
-        String text = "Player " + ((player) ? ("1") : ("2"));
+        String text = LanguagePack.setText(LanguagePack.getLanguage(), "Player ") + ((player) ? ("1") : ("2"));
         g2d.setFont(new Font("Arial", Font.BOLD, 20));
         g2d.drawString(text, PANEL_WIDTH / 2 - 25, 50);
     }
@@ -222,8 +222,6 @@ public class Panel extends JPanel implements ActionListener {
         for(int i = 0; i < numberOfTree; i++)
             if(basket[i].getMaxCount() > 0)
                 treesInPlay++;
-        System.out.println("treesInPlay = " + treesInPlay);
-        System.out.println("NimSum = " + nimSum);
         if(typeOfGame.equals(GameType.NORMAL))
             return NormalPlay(nimSum, treesInPlay);
         else if(typeOfGame.equals(GameType.MISERE))
@@ -294,7 +292,6 @@ public class Panel extends JPanel implements ActionListener {
                         moveDone();
                         return true;
                     }
-                        
                 }
             }
             if(nimSum == 0){
@@ -392,12 +389,20 @@ public class Panel extends JPanel implements ActionListener {
         if (finish) {
             int player = (numberOfPlayer) ? (1) : (2);
             if (typeOfGame.equals(GameType.MISERE)) {
-                JOptionPane.showMessageDialog(null, "Player " + player + " lost");
+                JOptionPane.showMessageDialog(null, 
+                    LanguagePack.setText(LanguagePack.getLanguage(), "Player ") 
+                    + (1 + (player%2)) + 
+                    LanguagePack.setText(LanguagePack.getLanguage(), " won"));
             } else {
-                JOptionPane.showMessageDialog(null, "Player " + player + " won");
+                JOptionPane.showMessageDialog(null, 
+                    LanguagePack.setText(LanguagePack.getLanguage(), "Player ") 
+                    + player + 
+                    LanguagePack.setText(LanguagePack.getLanguage(), " won"));
             }
             int answer;
-            answer = javax.swing.JOptionPane.showConfirmDialog(null, "Want to play again?", "QUESTION ?",
+            answer = javax.swing.JOptionPane.showConfirmDialog(null, 
+                    LanguagePack.setText(LanguagePack.getLanguage(), "Want to play again?"), 
+                    LanguagePack.setText(LanguagePack.getLanguage(), "QUESTION ?"),
                     javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.WARNING_MESSAGE);
             if (answer == javax.swing.JOptionPane.YES_OPTION) {
                OptionFrame frame = new OptionFrame();
