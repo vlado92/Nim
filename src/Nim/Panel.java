@@ -9,9 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.RetentionPolicy;
 import java.net.URL;
-import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -217,16 +215,22 @@ public class Panel extends JPanel implements ActionListener {
     }
     private boolean isComputerMove(){
         int nimSum = 0;
-        for(int i = 0; i < numberOfTree-1; i++)
+        int treesInPlay = 0;
+        for(int i = 0; i < numberOfTree-1; i++){
             nimSum = basket[i].getMaxCount()^ basket[i+1].getMaxCount();
+        }
+        for(int i = 0; i < numberOfTree; i++)
+            if(basket[i].getMaxCount() > 0)
+                treesInPlay++;
+        System.out.println("treesInPlay = " + treesInPlay);
         System.out.println("NimSum = " + nimSum);
         if(typeOfGame.equals(GameType.NORMAL))
-            return NormalPlay(nimSum);
+            return NormalPlay(nimSum, treesInPlay);
         else if(typeOfGame.equals(GameType.MISERE))
-            return MiserePlay(nimSum);
+            return MiserePlay(nimSum, treesInPlay);
         return false;
     }
-    private boolean NormalPlay(int nimSum){
+    private boolean NormalPlay(int nimSum, int treesInPlay){
         if(nimSum == 0){
             for(int i = 0; i < numberOfTree; i++)
                 if(basket[i].getMaxCount() > 0)
@@ -240,24 +244,80 @@ public class Panel extends JPanel implements ActionListener {
         else{
             for(int i = 0; i < numberOfTree; i++)
             {
-                System.out.println("ovo " + (basket[i].getMaxCount() ^ nimSum) + " < " + basket[i].getMaxCount());
                 if((basket[i].getMaxCount() ^ nimSum) < basket[i].getMaxCount()){
                     basket[i].setCount(basket[i].getMaxCount() - (basket[i].getMaxCount() ^ nimSum));
-                    boolean done2;
-                    done2 = removeApples(i, basket[i].getCount());
-                    if (done2){
-                        moveDone();
-                        return true;
-                    }
-                    else
-                        return false;
+                    removeApples(i, basket[i].getCount());
+                    moveDone();
+                    return true;
                 }
             }
         }
         return false;
     }
-    private boolean MiserePlay(int nimSum) {
-        System.out.println("MISERE");
+    private boolean MiserePlay(int nimSum, int treesInPlay) {
+        if(treesInPlay == 1)
+                for(int i = 0; i < numberOfTree; i++)
+                {
+                    if(basket[i].getMaxCount() > 1)
+                    {
+                        basket[i].setCount(basket[i].getMaxCount() - 1);
+                        removeApples(i, basket[i].getCount());
+                        moveDone();
+                        return true;
+                    }
+                }   
+            else if(treesInPlay == 2)
+            {
+                int sizeOne = 0;
+                int counter = 0;
+                int[] index = new int[treesInPlay];
+                for(int i = 0; i < numberOfTree; i++)
+                {
+                    if(basket[i].getMaxCount() > 0)
+                        index[counter++] = i;
+                    if(basket[i].getMaxCount() == 1)
+                        sizeOne++;
+                }
+                if(sizeOne > 0)
+                {
+                    if(basket[index[0]].getMaxCount() == 1)
+                    {
+                        basket[index[1]].setCount(basket[index[1]].getMaxCount());
+                        removeApples(index[1], basket[index[1]].getCount());
+                        moveDone();
+                        return true;
+                    }
+                    else
+                    {
+                        basket[index[0]].setCount(basket[index[0]].getMaxCount());
+                        removeApples(index[0], basket[index[0]].getCount());
+                        moveDone();
+                        return true;
+                    }
+                        
+                }
+            }
+            if(nimSum == 0){
+            for(int i = 0; i < numberOfTree; i++)
+                if(basket[i].getMaxCount() > 0)
+                {
+                    basket[i].setCount(1);
+                    removeApples(i, basket[i].getCount());
+                    moveDone();
+                    return true;
+                }
+        }
+        else{
+            for(int i = 0; i < numberOfTree; i++)
+            {
+                if((basket[i].getMaxCount() ^ nimSum) < basket[i].getMaxCount()){
+                    basket[i].setCount(basket[i].getMaxCount() - (basket[i].getMaxCount() ^ nimSum));
+                    removeApples(i, basket[i].getCount());
+                    moveDone();
+                    return true;
+                }
+            }
+        }
         return false;
     }
     int tempMaxCount;
@@ -312,14 +372,11 @@ public class Panel extends JPanel implements ActionListener {
             int removeApples = numberOfApples;
             basket[i].setMaxCount(basket[i].getMaxCount() - removeApples);
             while (removeApples > 0) {
-                System.out.println("doslo ovde " + removeApples);
                 apple[i][j--].setAppleExistance(false);
                 removeApples--;
             }
             return true;
         }
-        else
-            System.out.println("Proletilo if");
         return false;
     }
     private void isFinished() {

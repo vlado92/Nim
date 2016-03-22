@@ -13,7 +13,6 @@ public class Main {
           form.setVisible(true);
     }
     static void connect() {
-    
                 JFrame frame = new JFrame("Please connect to Internet");
                 frame.setVisible(true);
                 frame.setAlwaysOnTop(true);

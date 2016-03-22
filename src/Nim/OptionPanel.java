@@ -173,9 +173,12 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
     }
     
     private void isDone(){
-        if(treeDone && TypeOfGameDone() && TypeOfPlayerDone()&&ApplesDone())
+        if(treeDone && TypeOfGameDone() && TypeOfPlayerDone()&&ApplesDone() && PlayOrderDone())
             acceptButton.setEnabled(true);
+        else
+            acceptButton.setEnabled(false);
     }
+    
     private boolean ApplesDone(){
         for(int i = 0; i < Integer.parseInt(numberOfTrees.getSelectedItem().toString()); i++)
             if(numberOfApplesOnTree[i].getText().isEmpty())
@@ -190,6 +193,12 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
     }
     private boolean TypeOfPlayerDone(){
         if(humanPlayer.isSelected() || computerPlayer.isSelected())
+            return true;
+        else
+            return false;
+    }
+    private boolean PlayOrderDone(){
+        if(playOrder[0].isSelected() || playOrder[1].isSelected())
             return true;
         else
             return false;
