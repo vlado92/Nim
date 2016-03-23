@@ -72,6 +72,8 @@ public class MainFrame extends JFrame{
         JMenuItem italian = new JMenuItem("Italiano");
         JMenuItem serbian = new JMenuItem("Српски");
         JMenuItem croatian = new JMenuItem("Hrvatski");
+        JMenuItem french = new JMenuItem("Français");
+        
         english.addActionListener(new ActionListener()   {
             @Override public void actionPerformed(ActionEvent ae) {
                 int answer;
@@ -138,13 +140,25 @@ public class MainFrame extends JFrame{
     
                     }
                 });
-
+        french.addActionListener(new ActionListener()   {
+            @Override public void actionPerformed(ActionEvent ae) {
+                int answer;
+                answer = dialogBox(LanguagePack.Language.FRANÇAIS);
+                if (answer == javax.swing.JOptionPane.YES_OPTION) {
+                    LanguagePack.changeLanguage(LanguagePack.Language.FRANÇAIS);
+                    OptionFrame frame = new OptionFrame();
+                    dispose();
+                }
+        }
+        });
+        
         language.add(english);
         language.add(slovenian);
         language.add(german);
         language.add(italian);
         language.add(croatian);
         language.add(serbian);
+        language.add(french);
         
         menuBar.add(language);
 

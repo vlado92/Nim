@@ -13,6 +13,7 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -37,10 +38,12 @@ public class Panel extends JPanel implements ActionListener {
     private Basket[] basket = null;
     private JButton[] basketButton = null;
     private JButton finished = null;
+    private String playerTurnText = "";
+    
     private int numberOfTree = 4;
     private int numberOfApplesOnTreeArray[] = null;
     private int numberOfApplesOnTree = 0;
-// </editor-fold>
+    // </editor-fold>
 
     public Panel(GameType game, boolean player, int trees, int[] apples, boolean order) {
         initComponents(game, player, trees, apples, order);
@@ -140,7 +143,7 @@ public class Panel extends JPanel implements ActionListener {
         Apple.loadImages();
         Tree.loadImages();
         Basket.loadImages();
-        try {
+        try { 
             backgroundImage = ImageIO.read(new File("C:\\picturesForNim\\background.jpg"));
         } catch (IOException ex) {
             try {
@@ -152,6 +155,7 @@ public class Panel extends JPanel implements ActionListener {
             }
         }
     }
+    
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -167,10 +171,10 @@ public class Panel extends JPanel implements ActionListener {
                     drawApple(g2d, j, i);
                 }
             }
-
             drawBasketText(g2d, j);
         }
-
+        if(isComputer && (playFirst == numberOfPlayer) && !clicked)
+            drawText(g2d);
         drawPlayer(g2d, numberOfPlayer);
     }
     private void drawTree(Graphics2D g2d, int i) {
@@ -190,7 +194,11 @@ public class Panel extends JPanel implements ActionListener {
     private void drawPlayer(Graphics2D g2d, boolean player) {
         String text = LanguagePack.setText(LanguagePack.getLanguage(), "Player ") + ((player) ? ("1") : ("2"));
         g2d.setFont(new Font("Arial", Font.BOLD, 20));
-        g2d.drawString(text, PANEL_WIDTH / 2 - 25, 50);
+        g2d.drawString(text, PANEL_WIDTH / 2 - 50, 50);
+    }
+    private void drawText(Graphics2D g2d){
+        g2d.setFont(new Font("Arial", Font.BOLD, 15));
+        g2d.drawString(playerTurnText, PANEL_WIDTH/2 - 120, 70);
     }
     //</editor-fold>
     
@@ -213,6 +221,14 @@ public class Panel extends JPanel implements ActionListener {
             Main.fram.dispose();
         }
     }
+    private void setPlayerTurnText(int numberOfApples, boolean player, int tree){
+        playerTurnText = LanguagePack.setText(LanguagePack.getLanguage(), "Player ")
+                + ((player) ? ("1") : ("2"))
+                + " " + LanguagePack.setText(LanguagePack.getLanguage(), "take")
+                + " " + numberOfApples + " " + LanguagePack.setText(LanguagePack.getLanguage(), "apples")
+                + " "  + LanguagePack.setText(LanguagePack.getLanguage(), "from")
+                + " " + LanguagePack.setText(LanguagePack.getLanguage(), "Tree ") + tree;
+    } 
     private boolean isComputerMove(){
         int nimSum = 0;
         int treesInPlay = 0;
@@ -365,6 +381,10 @@ public class Panel extends JPanel implements ActionListener {
     }
     private boolean removeApples(int i, int numberOfApples){
         if (basket[i].getCount() > 0) {
+            if(isComputer && (playFirst != numberOfPlayer))
+            {
+                setPlayerTurnText(numberOfApples, numberOfPlayer, (i+1));
+            }
             int j = basket[i].getMaxCount() - 1;
             int removeApples = numberOfApples;
             basket[i].setMaxCount(basket[i].getMaxCount() - removeApples);

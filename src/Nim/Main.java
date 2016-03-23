@@ -9,8 +9,8 @@ import javax.swing.JLabel;
 public class Main {
     static MainFrame fram;
     public static void main(String[] args) {
-          OptionFrame form = new OptionFrame();
-          form.setVisible(true);
+        OptionFrame form = new OptionFrame();
+        form.setVisible(true);
     }
     static void connect() {
                 JFrame frame = new JFrame("Please connect to Internet");
