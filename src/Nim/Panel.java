@@ -381,6 +381,7 @@ public class Panel extends JPanel implements ActionListener {
         }
         isFinished();
         numberOfPlayer = !numberOfPlayer;
+        finished.setEnabled(false);
     }
     private boolean removeApples(int i, int numberOfApples){
         if (basket[i].getCount() > 0) {
@@ -434,6 +435,5 @@ public class Panel extends JPanel implements ActionListener {
             
             this.setVisible(false);
         }
-        finished.setEnabled(false);
     }
 }
