@@ -421,7 +421,7 @@ public class LanguagePack {
                     case "Want to play again?":
                         return "Voulez vous rejouer ?";
                     case "Are you sure you want to cancel this game":
-                        return "êtes vous sûr de vouloir abandonner ce jeu ?";
+                        return "êtes vous sûr de vouloir abandonner ce jeu";
                     case " and change language?":
                         return "et de changer la langue ?";
                     case "take":

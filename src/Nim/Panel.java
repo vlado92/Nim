@@ -132,9 +132,11 @@ public class Panel extends JPanel implements ActionListener {
     private void addFinishButton() {
         finished = new JButton(LanguagePack.setText(LanguagePack.getLanguage(), "Finish move"));
         finished.setVisible(true);
-        finished.setBounds(PANEL_WIDTH / 2 - 60, PANEL_HEIGHT - 20, 120, 40);
+        finished.setBounds(0, PANEL_HEIGHT - 20, PANEL_WIDTH, 40);
         finished.setName("" + (numberOfTree));
+        finished.setAlignmentX(CENTER_ALIGNMENT);
         finished.addActionListener(this);
+        finished.setEnabled(false);
         add(finished);
     }
     
@@ -340,6 +342,7 @@ public class Panel extends JPanel implements ActionListener {
         if (indexOfClickedButton != numberOfTree) {
             
             if(!clicked){
+                finished.setEnabled(true);
                 tempMaxCount = basket[indexOfClickedButton].getMaxCount();
                 for (int j = 0; j < numberOfTree; j++) {
                     if (j != indexOfClickedButton) {
@@ -431,5 +434,6 @@ public class Panel extends JPanel implements ActionListener {
             
             this.setVisible(false);
         }
+        finished.setEnabled(false);
     }
 }
