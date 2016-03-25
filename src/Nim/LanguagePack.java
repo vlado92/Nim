@@ -5,7 +5,7 @@ public class LanguagePack {
     public enum Language {
         ENGLISH, СРПСКИ, SLOVENČINA, ITALIANO, DEUTSCH, HRVATSKI, FRANÇAIS
     }
-    private static Language language = Language.FRANÇAIS;
+    private static Language language = Language.ENGLISH;
 
     public static void changeLanguage(Language lang){
         language = lang;
@@ -72,6 +72,18 @@ public class LanguagePack {
                         return "apples";
                     case "from":
                         return "from";
+                    case "Nim is played starting with piles or rows of objects.\n"
+                + "In every move you can take any number of apples from one trees.\n"
+                + "In Normal Mode whoever takes the last of the objects wins!\n" 
+                + "In Misere Mode whoever takes the last of the objects loses!\n" 
+                + "By clicking basket below tree, you take apples from that tree\n"
+                + "When you finish your move, press \"Finish move\" button":
+                        return "Nim is played starting with piles or rows of objects.\n"
+                + "In every move you can take any number of apples from one trees.\n"
+                + "In Normal Mode whoever takes the last of the objects wins!\n" 
+                + "In Misere Mode whoever takes the last of the objects loses!\n" 
+                + "By clicking basket below tree, you take apples from that tree\n"
+                + "When you finish your move, press \"Finish move\" button";
                     default:
                         return "Text not available";
                 }
@@ -132,6 +144,20 @@ public class LanguagePack {
                         return "јабуке";
                     case "from":
                         return "са";
+                    case 
+                    "Nim is played starting with piles or rows of objects.\n"
+                + "In every move you can take any number of apples from one trees.\n"
+                + "In Normal Mode whoever takes the last of the objects wins!\n" 
+                + "In Misere Mode whoever takes the last of the objects loses!\n" 
+                + "By clicking basket below tree, you take apples from that tree\n"
+                + "When you finish your move, press \"Finish move\" button":
+                        return 
+                    "Nim је игра која почиње са колонама редова објеката.\n"
+                +   "У сваком потезу можете узети колико желите јабука са једног дрвета\n"
+                +   "У Normal модулу ко узме послетњу јабуку је побједио у игри!\n"
+                +   "У Misere модулу ко узме послетњу јабуку је изгубио у игри!\n"
+                +   "Када притиснете кошару испод дрвета, узимате јабуке са тог дрвета.\n"
+                +   "Када завршите Ваш потез, притисните дугме \"Завши потез\"";
                     default:
                         return "Текст није доступан";
                 }
@@ -192,7 +218,20 @@ public class LanguagePack {
                         return "Äpfel";
                     case "from":
                         return "vom";
-                    default:
+                    case "Nim is played starting with piles or rows of objects.\n"
+                +   "In every move you can take any number of apples from one trees.\n"
+                +   "In Normal Mode whoever takes the last of the objects wins!\n" 
+                +   "In Misere Mode whoever takes the last of the objects loses!\n" 
+                +   "By clicking basket below tree, you take apples from that tree\n"
+                +   "When you finish your move, press \"Finish move\" button":
+                        return 
+                    "Wird Nim gespielt, beginnend mit Pfählen oder Reihen von Objekten.\n"
+                +   "In jeder Bewegung eine beliebige Anzahl von Äpfeln aus einem Bäume nehmen kann.\n"
+                +   "Im Normal Modus wer auch immer der letzte der Objekte nimmt gewinnt! \n"
+                +   "In Misere Modus wer auch immer die letzte der Objekte nimmt verliert!\n"
+                +   "Mit dem Korb unter Baum klicken, nehmen Sie Äpfel von diesem Baum\n"
+                +   "Wenn Sie Ihren Umzug, drücken Sie beenden \"Ziel bewegen\" Taste";
+                        default:
                         return "Text nicht verfügbar";
                 }
             
@@ -252,6 +291,18 @@ public class LanguagePack {
                         return "mele";
                     case "from":
                         return "da";
+                    case "Nim is played starting with piles or rows of objects.\n"
+                + "In every move you can take any number of apples from one trees.\n"
+                + "In Normal Mode whoever takes the last of the objects wins!\n" 
+                + "In Misere Mode whoever takes the last of the objects loses!\n" 
+                + "By clicking basket below tree, you take apples from that tree\n"
+                + "When you finish your move, press \"Finish move\" button":
+                    return "Nim si gioca a partire da pali o file di oggetti.\n"
+                            + "In ogni mossa si può prendere qualsiasi numero di mele da un albero.\n"
+                            + "Nel Normal modo chi prende l'ultimo degli oggetti vince!\n"
+                            +"In modalità Misere chi prende l'ultimo degli oggetti perde!\n"
+                            + "Cliccando cesto sotto l'albero, si prende le mele da quell'albero\n"
+                            + "Al termine il vostro movimento, premere il tasto \"Finitura mossa\"";
                     default:
                         return "Testo non disponibile";
                 }
@@ -312,6 +363,18 @@ public class LanguagePack {
                         return "jabuke";
                     case "from":
                         return "sa";
+                    case "Nim is played starting with piles or rows of objects.\n"
+                + "In every move you can take any number of apples from one trees.\n"
+                + "In Normal Mode whoever takes the last of the objects wins!\n" 
+                + "In Misere Mode whoever takes the last of the objects loses!\n" 
+                + "By clicking basket below tree, you take apples from that tree\n"
+                + "When you finish your move, press \"Finish move\" button":
+                        return "Nim se igra počevši sa kolonama redova objekata.\n"
+                              +"Svaki potez možete uzeti proizvoljno jabuka sa jednog drveta.\n"
+                              +"U Normal modu ko uzme poslednju jabuku je pobjedio.\n"
+                              +"U Misere modu ko uzme poslednju jabuku je izbubio.\n"
+                              +"Jabuke uzimate pritiskajući košaru ispod drveta.\n"
+                              +"Kada završite potez, pritisnite dugme \"Završi potez\"";
                     default:
                         return "Tekst nije dostupan";
                 }
@@ -372,6 +435,18 @@ public class LanguagePack {
                         return "jabolk";
                     case "from":
                         return "od";
+                    case "Nim is played starting with piles or rows of objects.\n"
+                + "In every move you can take any number of apples from one trees.\n"
+                + "In Normal Mode whoever takes the last of the objects wins!\n" 
+                + "In Misere Mode whoever takes the last of the objects loses!\n" 
+                + "By clicking basket below tree, you take apples from that tree\n"
+                + "When you finish your move, press \"Finish move\" button":
+                        return "Nim se igra začne s piloti ali vrstic predmetov\n"
+                +   "V vsako potezo si lahko poljubno število jabolk iz enega drevesa.\n"
+                +   "V Normal načinu kdo prevzame zadnji predmetov zmaga!\n"
+                +   "V Misere načinu kdo prevzame zadnji predmetov padel!\n"
+                +   "S klikom na koš pod drevo, ste vzeli jabolka iz tega drevesa\n"
+                                +"Ko končate potezo, pritisnite gumb \"Konča poteza\"";
                     default:
                         return "Besedilo ni na voljo";
                 }
@@ -430,6 +505,13 @@ public class LanguagePack {
                         return "pommes";
                     case "from":
                         return "de l\'";
+                    case "Nim is played starting with piles or rows of objects.\n"
+                + "In every move you can take any number of apples from one trees.\n"
+                + "In Normal Mode whoever takes the last of the objects wins!\n" 
+                + "In Misere Mode whoever takes the last of the objects loses!\n" 
+                + "By clicking basket below tree, you take apples from that tree\n"
+                + "When you finish your move, press \"Finish move\" button":
+                        return "NOT DONE";
                     default: 
                         return "texte non disponible";
             }
