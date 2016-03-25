@@ -126,8 +126,8 @@ public class OptionPanel extends JPanel implements ActionListener, KeyListener{
             MistakeLabel = new JLabel();
             MistakeLabel.setBounds(160, 160, 200, 40);
             
-            JLabel hint = new JLabel(LanguagePack.setText(LanguagePack.getLanguage(), "(Hint: 0 means random)"));
-            hint.setBounds(0, 145, 150, 20);
+            JLabel hint = new JLabel(LanguagePack.setText(LanguagePack.getLanguage(), "(Hint: 0 is random)"));
+            hint.setBounds(0, 145, 220, 20);
             hint.setFont(new Font("Arial", Font.PLAIN, 8));
 
             add(hint);

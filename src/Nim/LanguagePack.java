@@ -5,7 +5,7 @@ public class LanguagePack {
     public enum Language {
         ENGLISH, СРПСКИ, SLOVENČINA, ITALIANO, DEUTSCH, HRVATSKI, FRANÇAIS
     }
-    private static Language language = Language.ENGLISH;
+    private static Language language = Language.FRANÇAIS;
 
     public static void changeLanguage(Language lang){
         language = lang;
@@ -399,7 +399,7 @@ public class LanguagePack {
                     case "Please use only numbers":
                         return "SVP n'utilisez que des chiffres";
                     case "Maximal number of apples is 50":
-                        return "Le nombre maximal de pommes est de 50";
+                        return "Le maximal de pommes est de 50";
                     case "Human":
                         return "Joueur";
                     case "Computer":
@@ -421,9 +421,9 @@ public class LanguagePack {
                     case "Want to play again?":
                         return "Voulez vous rejouer ?";
                     case "Are you sure you want to cancel this game":
-                        return "êtes vous sûr de vouloir abandonner ce jeu";
+                        return "Êtes vous sûr de vouloir abandonner ce jeu";
                     case " and change language?":
-                        return "et de changer la langue ?";
+                        return " et changer la langue ?";
                     case "take":
                         return "prend";
                     case "apples":
