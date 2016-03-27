@@ -5,7 +5,7 @@ public class LanguagePack {
     public enum Language {
         ENGLISH, СРПСКИ, SLOVENČINA, ITALIANO, DEUTSCH, HRVATSKI, FRANÇAIS
     }
-    private static Language language = Language.ENGLISH;
+    private static Language language = Language.FRANÇAIS;
 
     public static void changeLanguage(Language lang){
         language = lang;
@@ -511,7 +511,13 @@ public class LanguagePack {
                 + "In Misere Mode whoever takes the last of the objects loses!\n" 
                 + "By clicking basket below tree, you take apples from that tree\n"
                 + "When you finish your move, press \"Finish move\" button":
-                        return "NOT DONE";
+                        return "Nim est un jeu qui se commence avec des piles ou des rangées d'objets\n" 
+                +   "À chaque mouvement vous pouvez prendre n'importe quel nombre\nde pommes d'un seul arbre\n"
++                   "Dans le mode Normal, quiconque prend le dernier objet gagne\n"
++                   "Dans le mode Misere , quiconque prend le dernier objet perd\n"
++                   "En cliquant sur le panier en dessous d'un arbre, vous prenez\n"
+                  + "des pommes de cet arbre. Quand vous avez fini vos opérations,\n"
+                                + "appuyez sur le bouton \"Mouvement terminé\"";
                     default: 
                         return "texte non disponible";
             }

@@ -10,7 +10,7 @@ public class Instructions extends JFrame {
     private JLabel madeBy = new JLabel("made by: Vladimir Kunarac");
     private JLabel date = new JLabel("Date: 24.3.2016.");
     private final int FRAME_WIDTH = 400;
-    private final int FRAME_HEIGHT = 180;
+    private final int FRAME_HEIGHT = 200;
     
     public Instructions(MainFrame frame) {
         setVisible(true);
@@ -32,12 +32,12 @@ public class Instructions extends JFrame {
                 + "By clicking basket below tree, you take apples from that tree\n"
                 + "When you finish your move, press \"Finish move\" button";
         rulesOfGame.setText(LanguagePack.setText(LanguagePack.getLanguage(), text));
-        rulesOfGame.setBounds(0, 0, FRAME_WIDTH, 100);
+        rulesOfGame.setBounds(0, 0, FRAME_WIDTH, 140);
         rulesOfGame.setEditable(false);
         rulesOfGame.setBackground(this.getBackground());
         add(rulesOfGame);
-        madeBy.setBounds(200, 120, FRAME_WIDTH-200, 30);
-        date.setBounds(0, 120, 150, 30);
+        madeBy.setBounds(200, 140, FRAME_WIDTH-200, 30);
+        date.setBounds(0, 140, 150, 30);
         JLabel pointless = new JLabel();
         add(madeBy);
         add(date);
