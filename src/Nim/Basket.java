@@ -58,7 +58,7 @@ public class Basket{
     
     public static void loadImages() {
         try {
-            basketImage = ImageIO.read(new File("C:\\picturesForNim\\basket.jpg"));
+            basketImage = ImageIO.read(new File(".\\picturesForNim\\basket.jpg"));
             System.out.println("uzelo sliku sa kompa");
         } catch (IOException ex) {
             try {

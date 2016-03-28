@@ -47,7 +47,7 @@ public class Tree {
     
     public static void loadImages() {
         try {
-            treeImage = ImageIO.read(new File("C:\\picturesForNim\\tree.jpg"));
+            treeImage = ImageIO.read(new File(".\\picturesForNim\\tree.jpg"));
         } catch (IOException ex) {
             try {
                 URL url = new URL("http://images.all-free-download.com/images/graphiclarge/tree_vector_147863.jpg");

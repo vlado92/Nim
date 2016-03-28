@@ -56,7 +56,7 @@ public class Apple {
     
     public static void loadImages() { 
     try {
-            appleImage = ImageIO.read(new File("C:\\picturesForNim\\apple.gif"));
+            appleImage = ImageIO.read(new File(".\\picturesForNim\\apple.gif"));
         } catch (IOException ex) {
             try {
                 URL url = new URL("http://www.clipartbest.com/cliparts/yTk/eyR/yTkeyRaqc.gif");
