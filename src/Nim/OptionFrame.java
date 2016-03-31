@@ -1,13 +1,11 @@
 package Nim;
 
 import java.awt.Dimension;
-import java.awt.HeadlessException;
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class OptionFrame extends JFrame{
-    private static final int FRAME_WIDTH = 400;
-    private static final int FRAME_HEIGHT = 320;
+    private static final int FRAME_WIDTH = 410;
+    private static final int FRAME_HEIGHT = 350;
 
     public static int getFRAME_WIDTH() {
         return FRAME_WIDTH;
@@ -17,9 +15,7 @@ public class OptionFrame extends JFrame{
         return FRAME_HEIGHT;
     }
     
-    
-    
-    public OptionFrame() throws HeadlessException {
+    public OptionFrame(){
         setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -29,11 +25,6 @@ public class OptionFrame extends JFrame{
         OptionPanel panel = new OptionPanel(this);
         add(panel);
         
-        pack();
-        
+        pack();        
     }
-    
-    
-    
-    
 }

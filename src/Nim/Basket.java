@@ -1,6 +1,5 @@
 package Nim;
 
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -8,12 +7,11 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 public class Basket{
-    private Rectangle2D.Double rectangle;
     static BufferedImage basketImage = null;
-    private int x;
-    private int y;
-    private int WIDHT;
-    private int HIGHT;
+    private final int x;
+    private final int y;
+    private final int WIDHT;
+    private final int HIGHT;
     private int count;
     private int maxCount;
 
@@ -22,9 +20,7 @@ public class Basket{
         this.y = y;
         this.WIDHT = WIDHT;
         this.HIGHT = HIGHT;
-        count = 0;
-        
-        rectangle = new Rectangle2D.Double(x, y, WIDHT, HIGHT);
+        setCount(0);
     }
 
     public void setCount(int number){
@@ -39,10 +35,6 @@ public class Basket{
     public int getCount() {
         return count;
     }
-    public Rectangle2D.Double getRectangle() {
-        rectangle.x = x;
-        return rectangle;
-    }
     public int getWIDHT() {
         return WIDHT;
     }
@@ -56,19 +48,20 @@ public class Basket{
         return y;
     }
     
-    public static void loadImages() {
+    public static boolean loadImages() {
         try {
             basketImage = ImageIO.read(new File(".\\picturesForNim\\basket.jpg"));
             System.out.println("uzelo sliku sa kompa");
         } catch (IOException ex) {
             try {
                 System.out.println("uzelo sliku sa neta");
-                URL url = new URL("http://www.wtv-zone.com/LaDeBoheme/studio/basket/basket.jpg");
+                URL url = new URL("https://scontent-vie1-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/12932827_1276225262395401_3591476988033199140_n.jpg?oh=5166ddc40c69f2ae9d6021331d8271a1&oe=577ED9E4");
                 basketImage = ImageIO.read(url);
             } catch (IOException e) { 
-                Main.connect();
+                return false;
             }
         }
+        return true;
     }
     public static BufferedImage getImage() {
         return basketImage;

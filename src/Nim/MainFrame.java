@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 public class MainFrame extends JFrame{
     private final static int FRAME_HEIGHT = 450;
@@ -29,12 +28,12 @@ public class MainFrame extends JFrame{
         return FRAME_WIDTH;
     }
     
-    public MainFrame(Panel.GameType game, boolean player, int trees, int[] apples, boolean order){
+    public MainFrame(Panel.GameType game, boolean player, int trees, int[] apples, boolean order, JFrame fram){
         setPreferredSize(new java.awt.Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
-        setLocationRelativeTo(null);
+        setLocation(fram.getX(), fram.getY());
         
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBounds(0, 0, FRAME_WIDTH, 20);
@@ -67,7 +66,7 @@ public class MainFrame extends JFrame{
         JMenu language = new JMenu(LanguagePack.setText(LanguagePack.getLanguage(), 
                 "Select language"));
         JMenuItem english = new JMenuItem("English");
-        JMenuItem slovenian = new JMenuItem("Slovencina");
+        JMenuItem slovenian = new JMenuItem("Slovenščina");
         JMenuItem german = new JMenuItem("Deutsch");
         JMenuItem italian = new JMenuItem("Italiano");
         JMenuItem serbian = new JMenuItem("Српски");
@@ -131,9 +130,9 @@ public class MainFrame extends JFrame{
         });
         slovenian.addActionListener(new ActionListener() {
                     @Override public void actionPerformed(ActionEvent ae) {
-                    int answer = dialogBox(LanguagePack.Language.SLOVENČINA);
+                    int answer = dialogBox(LanguagePack.Language.SLOVENŠČINA);
                             if (answer == javax.swing.JOptionPane.YES_OPTION) {
-                        LanguagePack.changeLanguage(LanguagePack.Language.SLOVENČINA);
+                        LanguagePack.changeLanguage(LanguagePack.Language.SLOVENŠČINA);
                         OptionFrame frame = new OptionFrame();
                         dispose();
                     }

@@ -3,9 +3,9 @@ package Nim;
 public class LanguagePack {
 
     public enum Language {
-        ENGLISH, СРПСКИ, SLOVENČINA, ITALIANO, DEUTSCH, HRVATSKI, FRANÇAIS
+        ENGLISH, СРПСКИ, SLOVENŠČINA, ITALIANO, DEUTSCH, HRVATSKI, FRANÇAIS
     }
-    private static Language language = Language.FRANÇAIS;
+    private static Language language = Language.ENGLISH;
 
     public static void changeLanguage(Language lang){
         language = lang;
@@ -22,14 +22,14 @@ public class LanguagePack {
                         return "Select type of game:";
                     case "Select opponent:":
                         return "Select opponent:";
-                    case "Select number of trees:":
-                        return "Select number of trees:";
-                    case "Select number of Apples:":
-                        return "Select number of Apples:";
+                    case "Select number of stocks:":
+                        return "Select number of shelves:";
+                    case "Select number of fruits:":
+                        return "Select number of fruits:";
                     case "(Hint: 0 is random)":
                         return "(Hint: 0 is random)";
-                    case "Tree ":
-                        return "Tree ";
+                    case "Stock ":
+                        return "Shelf ";
                     case "Accept settings":
                         return "Accept settings";
                     case "Play first":
@@ -38,8 +38,8 @@ public class LanguagePack {
                         return "Play second";
                     case "Please use only numbers":
                         return "Please use only numbers";
-                    case "Maximal number of apples is 50":
-                        return "Maximal number of apples is 50";
+                    case "Maximal number of fruits is 50":
+                        return "Maximal number of fruits is 50";
                     case "Human":
                         return "Human";
                     case "Computer":
@@ -68,21 +68,19 @@ public class LanguagePack {
                         return " and change language?";
                     case "take":
                         return "take";
-                    case "apples":
-                        return "apples";
+                    case "fruits":
+                        return "fruits";
                     case "from":
                         return "from";
-                    case "Nim is played starting with piles or rows of objects.\n"
-                + "In every move you can take any number of apples from one trees.\n"
+                    case "In every move you can take any number of fruits from one stock.\n"
                 + "In Normal Mode whoever takes the last of the objects wins!\n" 
                 + "In Misere Mode whoever takes the last of the objects loses!\n" 
-                + "By clicking basket below tree, you take apples from that tree\n"
+                + "By clicking basket below stock, you take fruits from that stock\n"
                 + "When you finish your move, press \"Finish move\" button":
-                        return "Nim is played starting with piles or rows of objects.\n"
-                + "In every move you can take any number of apples from one trees.\n"
+                        return "In every move you can take any number of fruits from one shelf.\n"
                 + "In Normal Mode whoever takes the last of the objects wins!\n" 
                 + "In Misere Mode whoever takes the last of the objects loses!\n" 
-                + "By clicking basket below tree, you take apples from that tree\n"
+                + "By clicking basket below shelf, you take fruit from that shelf\n"
                 + "When you finish your move, press \"Finish move\" button";
                     default:
                         return "Text not available";
@@ -94,14 +92,14 @@ public class LanguagePack {
                         return "Изаберите тип игре:";
                     case "Select opponent:":
                         return "Изаберите противника:";
-                    case "Select number of trees:":
-                        return "Изаберите број дрвећа:";
-                    case "Select number of Apples:":
-                        return "Изабериte број јабука:";
+                    case "Select number of Stocks:":
+                        return "Изаберите број полица:";
+                    case "Select number of fruits:":
+                        return "Изабериte број воћа:";
                     case "(Hint: 0 is random)":
                         return "(Напомена: 0 је произвољно)";
-                    case "Tree ":
-                        return "Дрво ";
+                    case "Stock ":
+                        return "Полица ";
                     case "Accept settings":
                         return "Прихвати подешавања";
                     case "Play first":
@@ -110,8 +108,8 @@ public class LanguagePack {
                         return "Играј други";
                     case "Please use only numbers":
                         return "Молим Вас да користите бројеве";
-                    case "Maximal number of apples is 50":
-                        return "Максимално јабука је 50";
+                    case "Maximal number of fruits is 50":
+                        return "Максимално воћа је 50";
                     case "Human":
                         return "Особа";
                     case "Computer":
@@ -140,23 +138,19 @@ public class LanguagePack {
                         return " и промјенити језик?";
                     case "take":
                         return "узео";
-                    case "apples":
-                        return "јабуке";
+                    case "fruits":
+                        return "воће";
                     case "from":
                         return "са";
-                    case 
-                    "Nim is played starting with piles or rows of objects.\n"
-                + "In every move you can take any number of apples from one trees.\n"
+                    case "In every move you can take any number of fruits from one stock.\n"
                 + "In Normal Mode whoever takes the last of the objects wins!\n" 
                 + "In Misere Mode whoever takes the last of the objects loses!\n" 
-                + "By clicking basket below tree, you take apples from that tree\n"
+                + "By clicking basket below stock, you take fruits from that stock\n"
                 + "When you finish your move, press \"Finish move\" button":
-                        return 
-                    "Nim је игра која почиње са колонама редова објеката.\n"
-                +   "У сваком потезу можете узети колико желите јабука са једног дрвета\n"
-                +   "У Normal модулу ко узме послетњу јабуку је побједио у игри!\n"
-                +   "У Misere модулу ко узме послетњу јабуку је изгубио у игри!\n"
-                +   "Када притиснете кошару испод дрвета, узимате јабуке са тог дрвета.\n"
+                        return "У сваком потезу можете узети колико желите воћа са једне полице\n"
+                +   "У Normal модулу ко узме послетњу воћку је побједио у игри!\n"
+                +   "У Misere модулу ко узме послетњу воћку је изгубио у игри!\n"
+                +   "Када притиснете кошару испод полице, узимате воће са те полице.\n"
                 +   "Када завршите Ваш потез, притисните дугме \"Завши потез\"";
                     default:
                         return "Текст није доступан";
@@ -168,13 +162,13 @@ public class LanguagePack {
                         return "Wählen Sie die Art von Spiel:";
                     case "Select opponent:":
                         return "Wählen Gegner:";
-                    case "Select number of trees:":
+                    case "Select number of Stocks:":
                         return "Wählen Sie die Anzahl der Bäume:";
-                    case "Select number of Apples:":
+                    case "Select number of fruits:":
                         return "Wählen Sie die Anzahl der Äpfel:";
                     case "(Hint: 0 is random)":
                         return "(Hinweis: 0 ist zufällige)";
-                    case "Tree ":
+                    case "Stock ":
                         return "Baum ";
                     case "Accept settings":
                         return "Einstellungen übernehmen";
@@ -184,7 +178,7 @@ public class LanguagePack {
                         return "Spielen zweite";
                     case "Please use only numbers":
                         return "Bitte verwenden Sie nur Zahlen";
-                    case "Maximal number of apples is 50":
+                    case "Maximal number of fruits is 50":
                         return "Maximale Anzahl der Äpfel ist 50";
                     case "Human":
                         return "Person";
@@ -214,16 +208,15 @@ public class LanguagePack {
                         return " und die Sprache ändern?";
                     case "take":
                         return "nehmen";
-                    case "apples":
+                    case "fruits":
                         return "Äpfel";
                     case "from":
                         return "vom";
-                    case "Nim is played starting with piles or rows of objects.\n"
-                +   "In every move you can take any number of apples from one trees.\n"
-                +   "In Normal Mode whoever takes the last of the objects wins!\n" 
-                +   "In Misere Mode whoever takes the last of the objects loses!\n" 
-                +   "By clicking basket below tree, you take apples from that tree\n"
-                +   "When you finish your move, press \"Finish move\" button":
+                    case "In every move you can take any number of fruits from one stock.\n"
+                + "In Normal Mode whoever takes the last of the objects wins!\n" 
+                + "In Misere Mode whoever takes the last of the objects loses!\n" 
+                + "By clicking basket below stock, you take fruits from that stock\n"
+                + "When you finish your move, press \"Finish move\" button":
                         return 
                     "Wird Nim gespielt, beginnend mit Pfählen oder Reihen von Objekten.\n"
                 +   "In jeder Bewegung eine beliebige Anzahl von Äpfeln aus einem Bäume nehmen kann.\n"
@@ -241,14 +234,14 @@ public class LanguagePack {
                         return "Selezionare il tipo di gioco:";
                     case "Select opponent:":
                         return "Selezionare avversario:";
-                    case "Select number of trees:":
-                        return "Seleziona numero di alberi:";
-                    case "Select number of Apples:":
-                        return "Seleziona numero di mele:";
+                    case "Select number of Stocks:":
+                        return "Seleziona numero lo scaffali:";
+                    case "Select number of fruits:":
+                        return "Seleziona numero di frutta:";
                     case "(Hint: 0 is random)":
                         return "(Suggerimento: 0 è casuale)";
-                    case "Tree ":
-                        return "Albero ";
+                    case "Stock ":
+                        return "Lo scaffali ";
                     case "Accept settings":
                         return "Accetta le impostazioni";
                     case "Play first":
@@ -257,8 +250,8 @@ public class LanguagePack {
                         return "Giocare secondo";
                     case "Please use only numbers":
                         return "Si prega di utilizzare solo numeri";
-                    case "Maximal number of apples is 50":
-                        return "Numero massimo di mele è di 50";
+                    case "Maximal number of fruits is 50":
+                        return "Numero massimo di frutta è di 50";
                     case "Human":
                         return "Persona";
                     case "Computer":
@@ -287,21 +280,19 @@ public class LanguagePack {
                         return " e cambiare la lingua?";
                     case "take":
                         return "prende";
-                    case "apples":
-                        return "mele";
+                    case "fruits":
+                        return "frutta";
                     case "from":
                         return "da";
-                    case "Nim is played starting with piles or rows of objects.\n"
-                + "In every move you can take any number of apples from one trees.\n"
+                    case "In every move you can take any number of fruits from one stock.\n"
                 + "In Normal Mode whoever takes the last of the objects wins!\n" 
                 + "In Misere Mode whoever takes the last of the objects loses!\n" 
-                + "By clicking basket below tree, you take apples from that tree\n"
+                + "By clicking basket below stock, you take fruits from that stock\n"
                 + "When you finish your move, press \"Finish move\" button":
-                    return "Nim si gioca a partire da pali o file di oggetti.\n"
-                            + "In ogni mossa si può prendere qualsiasi numero di mele da un albero.\n"
+                    return "In ogni mossa si può prendere qualsiasi numero di frutta da un scaffale.\n"
                             + "Nel Normal modo chi prende l'ultimo degli oggetti vince!\n"
                             +"In modalità Misere chi prende l'ultimo degli oggetti perde!\n"
-                            + "Cliccando cesto sotto l'albero, si prende le mele da quell'albero\n"
+                            + "Cliccando cesto sotto la scaffale, si prende le frutta da quell'scaffale\n"
                             + "Al termine il vostro movimento, premere il tasto \"Finitura mossa\"";
                     default:
                         return "Testo non disponibile";
@@ -313,14 +304,14 @@ public class LanguagePack {
                         return "Izaberite tip igre:";
                     case "Select opponent:":
                         return "Izaberite protivnika:";
-                    case "Select number of trees:":
-                        return "Izaberite broj trveća:";
-                    case "Select number of Apples:":
-                        return "Izaberite broj jabuka:";
+                    case "Select number of Stocks:":
+                        return "Izaberite broj polica:";
+                    case "Select number of fruits:":
+                        return "Izaberite broj voćki:";
                     case "(Hint: 0 is random)":
                         return "(Napomena: 0 je nasumično)";
-                    case "Tree ":
-                        return "Drvo ";
+                    case "Stock ":
+                        return "Polica ";
                     case "Accept settings":
                         return "Prihvati podešavanja";
                     case "Play first":
@@ -329,8 +320,8 @@ public class LanguagePack {
                         return "Igraj drugi";
                     case "Please use only numbers":
                         return "Molim Vas da koristite brojeve";
-                    case "Maximal number of apples is 50":
-                        return "Maksimum jabuka je 50";
+                    case "Maximal number of fruits is 50":
+                        return "Maksimum voćki je 50";
                     case "Human":
                         return "Osoba";
                     case "Computer":
@@ -359,50 +350,48 @@ public class LanguagePack {
                         return " i promjeniti jezik?";
                     case "take":
                         return "uzeo";
-                    case "apples":
-                        return "jabuke";
+                    case "fruits":
+                        return "voćke";
                     case "from":
                         return "sa";
-                    case "Nim is played starting with piles or rows of objects.\n"
-                + "In every move you can take any number of apples from one trees.\n"
+                    case "In every move you can take any number of fruits from one stock.\n"
                 + "In Normal Mode whoever takes the last of the objects wins!\n" 
                 + "In Misere Mode whoever takes the last of the objects loses!\n" 
-                + "By clicking basket below tree, you take apples from that tree\n"
+                + "By clicking basket below stock, you take fruits from that stock\n"
                 + "When you finish your move, press \"Finish move\" button":
-                        return "Nim se igra počevši sa kolonama redova objekata.\n"
-                              +"Svaki potez možete uzeti proizvoljno jabuka sa jednog drveta.\n"
-                              +"U Normal modu ko uzme poslednju jabuku je pobjedio.\n"
-                              +"U Misere modu ko uzme poslednju jabuku je izbubio.\n"
-                              +"Jabuke uzimate pritiskajući košaru ispod drveta.\n"
+                        return "Svaki potez možete uzeti proizvoljno voćki sa jedne police.\n"
+                              +"U Normal modu ko uzme poslednju voćku je pobjedio.\n"
+                              +"U Misere modu ko uzme poslednju voćku je izbubio.\n"
+                              +"Jabuke uzimate pritiskajući košaru ispod police.\n"
                               +"Kada završite potez, pritisnite dugme \"Završi potez\"";
                     default:
                         return "Tekst nije dostupan";
                 }
             
-            case SLOVENČINA:
+            case SLOVENŠČINA:
                 switch (text) {
                     case "Select type of game:":
                         return "Izberite tip igre:";
                     case "Select opponent:":
-                        return "Izberite nasprotnik:";
-                    case "Select number of trees:":
-                        return "Izberite število dreves:";
-                    case "Select number of Apples:":
+                        return "Izberite nasprotnika:";
+                    case "Select number of Stocks:":
+                        return "Izberite število police:";
+                    case "Select number of fruits:":
                         return "Izberite število jabolk:";
                     case "(Hint: 0 is random)":
-                        return "(Namig: 0 naključno)";
-                    case "Tree ":
-                        return "Drevo ";
+                        return "(Namig: će izbereš 0, bo število naključno)";
+                    case "Stock ":
+                        return "Polica ";
                     case "Accept settings":
                         return "Sprejmi nastavitve";
                     case "Play first":
-                        return "Igrajte prvi";
+                        return "Igraš prvi";
                     case "Play second":
-                        return "Igrajo drugi";
+                        return "Igraš drugi";
                     case "Please use only numbers":
                         return "Prosimo, uporabite samo številke";
-                    case "Maximal number of apples is 50":
-                        return "Maksimalno število jabolk 50";
+                    case "Maximal number of fruits is 50":
+                        return "Maksimalno število sadje je 50";
                     case "Human":
                         return "Oseba";
                     case "Computer":
@@ -416,7 +405,7 @@ public class LanguagePack {
                     case "Exit":
                         return "Izhod";
                     case "Finish move":
-                        return "Konča poteza";
+                        return "Končaj potezo";
                     case "Player ":
                         return "Igralec ";
                     case " won":
@@ -430,22 +419,20 @@ public class LanguagePack {
                     case " and change language?":
                         return " in spremeniti jezik?";
                     case "take":
-                        return "bo";
-                    case "apples":
-                        return "jabolk";
+                        return "bo vzel";
+                    case "fruits":
+                        return "sadje";
                     case "from":
                         return "od";
-                    case "Nim is played starting with piles or rows of objects.\n"
-                + "In every move you can take any number of apples from one trees.\n"
+                    case "In every move you can take any number of fruits from one stock.\n"
                 + "In Normal Mode whoever takes the last of the objects wins!\n" 
                 + "In Misere Mode whoever takes the last of the objects loses!\n" 
-                + "By clicking basket below tree, you take apples from that tree\n"
+                + "By clicking basket below stock, you take fruits from that stock\n"
                 + "When you finish your move, press \"Finish move\" button":
-                        return "Nim se igra začne s piloti ali vrstic predmetov\n"
-                +   "V vsako potezo si lahko poljubno število jabolk iz enega drevesa.\n"
-                +   "V Normal načinu kdo prevzame zadnji predmetov zmaga!\n"
-                +   "V Misere načinu kdo prevzame zadnji predmetov padel!\n"
-                +   "S klikom na koš pod drevo, ste vzeli jabolka iz tega drevesa\n"
+                        return "V vsaki potezi lahko vzameš poljubno število sadje iz eno polico.\n"
+                +   "V Normal načinu kdor vzame zadnji predmetov, zmaga!\n"
+                +   "V Misere načinu kdor vzame zadnji predmetov, zgubi!\n"
+                +   "S klikom na koš pod polico, ste vzeli sadje sa te police\n"
                                 +"Ko končate potezo, pritisnite gumb \"Konča poteza\"";
                     default:
                         return "Besedilo ni na voljo";
@@ -457,14 +444,14 @@ public class LanguagePack {
                         return "Sélectionnez le type de jeu";
                     case "Select opponent:":
                         return "Sélectionnez l'adversaire";
-                    case "Select number of trees:":
-                        return "Sélectionnez le nombre d'arbres";
-                    case "Select number of Apples:":
-                        return "Sélectionnez le nombre de pommes";
+                    case "Select number of Stocks:":
+                        return "Sélectionnez le nombre d'étagères";
+                    case "Select number of fruits:":
+                        return "Sélectionnez le nombre de fruit";
                     case "(Hint: 0 is random)":
                         return "Conseil : 0 choisit un nombre aléatoire de pommes";
-                    case "Tree ":
-                        return "arbre ";
+                    case "Stock ":
+                        return "Étagères ";
                     case "Accept settings":
                         return "Valider";
                     case "Play first":
@@ -473,8 +460,8 @@ public class LanguagePack {
                         return "Jouer en deuxième";
                     case "Please use only numbers":
                         return "SVP n'utilisez que des chiffres";
-                    case "Maximal number of apples is 50":
-                        return "Le maximal de pommes est de 50";
+                    case "Maximal number of fruits is 50":
+                        return "Le maximal de fruits est de 50";
                     case "Human":
                         return "Joueur";
                     case "Computer":
@@ -501,22 +488,20 @@ public class LanguagePack {
                         return " et changer la langue ?";
                     case "take":
                         return "prend";
-                    case "apples":
-                        return "pommes";
+                    case "fruits":
+                        return "fruits";
                     case "from":
                         return "de l\'";
-                    case "Nim is played starting with piles or rows of objects.\n"
-                + "In every move you can take any number of apples from one trees.\n"
+                    case "In every move you can take any number of fruits from one stock.\n"
                 + "In Normal Mode whoever takes the last of the objects wins!\n" 
                 + "In Misere Mode whoever takes the last of the objects loses!\n" 
-                + "By clicking basket below tree, you take apples from that tree\n"
+                + "By clicking basket below stock, you take fruits from that stock\n"
                 + "When you finish your move, press \"Finish move\" button":
-                        return "Nim est un jeu qui se commence avec des piles ou des rangées d'objets\n" 
-                +   "À chaque mouvement vous pouvez prendre n'importe quel nombre\nde pommes d'un seul arbre\n"
+                        return "À chaque mouvement vous pouvez prendre n'importe quel nombre\nde fruits d'un seul étagère\n"
 +                   "Dans le mode Normal, quiconque prend le dernier objet gagne\n"
 +                   "Dans le mode Misere , quiconque prend le dernier objet perd\n"
-+                   "En cliquant sur le panier en dessous d'un arbre, vous prenez\n"
-                  + "des pommes de cet arbre. Quand vous avez fini vos opérations,\n"
++                   "En cliquant sur le panier en dessous d'un étagère, vous prenez\n"
+                  + "des fruits de cet étagère. Quand vous avez fini vos opérations,\n"
                                 + "appuyez sur le bouton \"Mouvement terminé\"";
                     default: 
                         return "texte non disponible";
@@ -527,5 +512,3 @@ public class LanguagePack {
         }
     }
 }
-// player   take  X apples
-//Le joueur prend X pommes

@@ -7,119 +7,132 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class Panel extends JPanel implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Variables">
-    private static int PANEL_HEIGHT = MainFrame.GetHeight() - 70;
-    private static int PANEL_WIDTH = MainFrame.GetWidth();
+    private static final int PANEL_HEIGHT = MainFrame.GetHeight() - 70;
+    private static final int PANEL_WIDTH = MainFrame.GetWidth();
 
     public enum GameType {
         MISERE, NORMAL
     }
     private GameType typeOfGame;
     private boolean numberOfPlayer;
-    private boolean isComputer;
+    private boolean isComputerPlaying;
     private boolean playFirst;
     private boolean clicked = false;
 
     static Image backgroundImage;
-    private Tree[] tree = null;
-    private Apple[][] apple = null;
+    private Shelf[] shelf = null;
+    private Fruit[][] fruits = null;
     private Basket[] basket = null;
     private JButton[] basketButton = null;
     private JButton finished = null;
     private String playerTurnText = "";
     
-    private int numberOfTree = 4;
-    private int numberOfApplesOnTreeArray[] = null;
-    private int numberOfApplesOnTree = 0;
+    private int numberOfStock = 4;
+    private int[] numberOfFruitsOnShelfArray;
+    private int numberOfFruitsOnShelf = 0;
+    
+    private final boolean picturesLoaded = loadImages();
     // </editor-fold>
 
     public Panel(GameType game, boolean player, int trees, int[] apples, boolean order) {
+        this.numberOfFruitsOnShelfArray = null;
         initComponents(game, player, trees, apples, order);
         if(!playFirst)
             computerMove();
     }
 
-    void initComponents(GameType game, boolean player, int trees, int[] apples, boolean order) {
+    private void initComponents(GameType game, boolean player, int trees, int[] apples, boolean order) {
         setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         setLayout(null);
-        loadImages();
         setFocusable(true);
         java.util.Random rand = new java.util.Random();
         typeOfGame = game;
         this.numberOfPlayer = true;
-        this.isComputer = player;
-        numberOfTree = trees;
+        this.isComputerPlaying = player;
+        numberOfStock = trees;
         playFirst = order;
 
-        numberOfApplesOnTreeArray = new int[numberOfTree];
-        for (int i = 0; i < numberOfTree; i++) {
+        numberOfFruitsOnShelfArray = new int[numberOfStock];
+        for (int i = 0; i < numberOfStock; i++) {
             if (apples[i] == 0) {
-                numberOfApplesOnTreeArray[i] = rand.nextInt(40) + 10;
+                numberOfFruitsOnShelfArray[i] = rand.nextInt(30) + 5;
             } else {
-                numberOfApplesOnTreeArray[i] = apples[i];
+                numberOfFruitsOnShelfArray[i] = apples[i];
             }
-            if (numberOfApplesOnTree < numberOfApplesOnTreeArray[i]) {
-                numberOfApplesOnTree = numberOfApplesOnTreeArray[i];
+            if (numberOfFruitsOnShelf < numberOfFruitsOnShelfArray[i]) {
+                numberOfFruitsOnShelf = numberOfFruitsOnShelfArray[i];
             }
         }
-
-        addTree();
+        
+        addStock();
         addBasket();
-        addApple();
+        addFruit();
         addBasketButton();
         addFinishButton();
         repaint();
+        
+        if(!picturesLoaded)
+            Main.connect();
     }
 
-    private void addTree() {
-        tree = new Tree[numberOfTree];
-        for (int i = 0; i < numberOfTree; i++) {
-            tree[i] = new Tree(i * (PANEL_WIDTH / numberOfTree), 0, PANEL_WIDTH / numberOfTree, PANEL_HEIGHT);
+    private void addStock() {
+        shelf = new Shelf[numberOfStock];
+        for (int i = 0; i < numberOfStock; i++) {
+            shelf[i] = new Shelf(i * (PANEL_WIDTH / numberOfStock), 0, PANEL_WIDTH / numberOfStock, PANEL_HEIGHT-90);
         }
     }
-    private void addApple() {
-        apple = new Apple[numberOfTree][numberOfApplesOnTree];
+    private void addFruit() {
+        fruits = new Fruit[numberOfStock][numberOfFruitsOnShelf];
 
-        for (int i = 0; i < numberOfTree; i++) {
-            for (int j = 0; j < numberOfApplesOnTree; j++) {
+        for (int i = 0; i < numberOfStock; i++) {
+            for (int j = 0; j < numberOfFruitsOnShelf; j++) {
                 if (j >= basket[i].getMaxCount()) {
-                    apple[i][j] = new Apple(0, 0, 0, 0);
-                    apple[i][j].setAppleExistance(false);
+                    fruits[i][j] = new Fruit(0, 0, 0, 0);
+                    fruits[i][j].setFruitExistance(false);
                 } else {
-                    apple[i][j] = new Apple(tree[i].getX() + j * 25 - (j / (9 - numberOfTree)) * (9 - numberOfTree) * 25 + 10,
-                            tree[i].getY() + 25 * (j / (9 - numberOfTree)) + 75, 20, 20);
-                    apple[i][j].setAppleExistance(true);
+                    fruits[i][j] = new Fruit(shelf[i].getX() + j * 25 - (j / getNum(numberOfStock)) * getNum(numberOfStock) * 25 + 15,
+                            shelf[i].getY() + 36 * (j / getNum(numberOfStock)) + 77, 20, 20);
+                    fruits[i][j].setFruitExistance(true);
                 }
             }
         }
     }
+    private int getNum(int stock){
+        if(stock == 1)
+        return 23;
+        else if(stock == 2)
+            return 11;
+        else if(stock == 3)
+            return 7;
+        else if(stock ==4)
+            return 5;
+        else
+            return 1;
+    }
     private void addBasket() {
-        basket = new Basket[numberOfTree];
-        for (int i = 0; i < numberOfTree; i++) {
-            basket[i] = new Basket(i * (PANEL_WIDTH / numberOfTree), PANEL_HEIGHT - 100,
-                    PANEL_WIDTH / numberOfTree, 80);
-            basket[i].setMaxCount(numberOfApplesOnTreeArray[i]);
+        basket = new Basket[numberOfStock];
+        for (int i = 0; i < numberOfStock; i++) {
+            basket[i] = new Basket(i * (PANEL_WIDTH / numberOfStock), PANEL_HEIGHT - 95,
+                    PANEL_WIDTH / numberOfStock, 80);
+            basket[i].setMaxCount(numberOfFruitsOnShelfArray[i]);
         }
     }
     private void addBasketButton() {
-        basketButton = new JButton[numberOfTree];
-        for (int i = 0; i < numberOfTree; i++) {
+        basketButton = new JButton[numberOfStock];
+        for (int i = 0; i < numberOfStock; i++) {
             basketButton[i] = new JButton();
             basketButton[i].setBounds(basket[i].getX(), basket[i].getY(), basket[i].getWIDHT(), basket[i].getHIGHT());
             basketButton[i].setVisible(true);
-            basketButton[i].setIcon(new ImageIcon(Basket.getImage().getScaledInstance(basket[i].getWIDHT(), basket[i].getHIGHT(), Image.SCALE_DEFAULT)));
+            if(picturesLoaded)
+                basketButton[i].setIcon(new ImageIcon(Basket.getImage().getScaledInstance(basket[i].getWIDHT(), basket[i].getHIGHT(), Image.SCALE_DEFAULT)));
             basketButton[i].setText("" + basket[i].getCount());
             basketButton[i].setName("" + i);
             basketButton[i].addActionListener(this);
@@ -133,7 +146,7 @@ public class Panel extends JPanel implements ActionListener {
         finished = new JButton(LanguagePack.setText(LanguagePack.getLanguage(), "Finish move"));
         finished.setVisible(true);
         finished.setBounds(0, PANEL_HEIGHT - 20, PANEL_WIDTH, 40);
-        finished.setName("" + (numberOfTree));
+        finished.setName("" + (numberOfStock));
         finished.setAlignmentX(CENTER_ALIGNMENT);
         finished.addActionListener(this);
         finished.setEnabled(false);
@@ -141,71 +154,64 @@ public class Panel extends JPanel implements ActionListener {
     }
     
     // <editor-fold defaultstate="collapsed" desc="Paint">
-    private void loadImages() {
-        Apple.loadImages();
-        Tree.loadImages();
-        Basket.loadImages();
-        try { 
-            backgroundImage = ImageIO.read(new File("C:\\picturesForNim\\background.jpg"));
-        } catch (IOException ex) {
-            try {
-                URL url = new URL("http://cdn.onextrapixel.com/wp-content/uploads/2011/01/27_summer-field.jpg");
-
-                backgroundImage = ImageIO.read(url);
-            } catch (IOException e) {
-                Main.connect();
-            }
-        }
+    private boolean loadImages() {
+        return (Fruit.loadImages() && Shelf.loadImages() && Basket.loadImages());
     }
     
     @Override
     public void paint(Graphics g) {
+
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        for (int j = 0; j < numberOfTree; j++) {
-            drawTree(g2d, j);
-            basketButton[j].repaint();
+        for (int j = 0; j < numberOfStock; j++) {
+            drawShelf(g2d, j);
+            if(picturesLoaded)
+                basketButton[j].repaint();
             finished.repaint();
             drawBasket(g2d, j);
-            for (int i = 0; i < numberOfApplesOnTree; i++) {
-                if (apple[j][i].appleExist()) {
-                    drawApple(g2d, j, i);
+            for (int i = 0; i < numberOfFruitsOnShelf; i++) {
+                if (fruits[j][i].isFruitExist()) {
+                    drawFruit(g2d, j, i);
                 }
             }
             drawBasketText(g2d, j);
         }
-        if(isComputer && (playFirst == numberOfPlayer) && !clicked)
+        if(isComputerPlaying && (playFirst == numberOfPlayer) && !clicked)
             drawText(g2d);
         drawPlayer(g2d, numberOfPlayer);
     }
-    private void drawTree(Graphics2D g2d, int i) {
-        g2d.drawImage(Tree.getImage(), tree[i].getX(), tree[i].getY(), tree[i].getWIDHT(), tree[i].getHIGHT(), null);
+    private void drawShelf(Graphics2D g2d, int i) {
+        if(picturesLoaded)
+            g2d.drawImage(Shelf.getImage(), shelf[i].getX(), shelf[i].getY(), shelf[i].getWIDHT(), shelf[i].getHIGHT(), null);
     }
     private void drawBasket(Graphics2D g2d, int i) {
-        g2d.drawImage(Basket.getImage(), basket[i].getX(), basket[i].getY(), basket[i].getWIDHT(), basket[i].getHIGHT(), null);
+        if(picturesLoaded)
+            g2d.drawImage(Basket.getImage(), basket[i].getX(), basket[i].getY(), basket[i].getWIDHT(), basket[i].getHIGHT(), null);
     }
     private void drawBasketText(Graphics2D g2d, int i) {
         g2d.setFont(new Font("Arial", Font.BOLD, 20));
         g2d.drawString("" + basket[i].getCount(), basket[i].getX() + basket[i].getWIDHT() / 2, basket[i].getY() + basket[i].getHIGHT() / 2);
     }
-    private void drawApple(Graphics2D g2d, int i, int j) {
-
-        g2d.drawImage(Apple.getImage(), apple[i][j].getX(), apple[i][j].getY(), apple[i][j].getWIDHT(), apple[i][j].getHIGHT(), null);
+    private void drawFruit(Graphics2D g2d, int i, int j) {
+        if(picturesLoaded)
+            g2d.drawImage(Fruit.getImage(), fruits[i][j].getX(), fruits[i][j].getY(), fruits[i][j].getWIDHT(), fruits[i][j].getHIGHT(), null);
+        else
+            g2d.drawRect(fruits[i][j].getX(), fruits[i][j].getY(), fruits[i][j].getWIDHT(), fruits[i][j].getHIGHT());
     }
     private void drawPlayer(Graphics2D g2d, boolean player) {
         String text = LanguagePack.setText(LanguagePack.getLanguage(), "Player ") + ((player) ? ("1") : ("2"));
         g2d.setFont(new Font("Arial", Font.BOLD, 20));
-        g2d.drawString(text, PANEL_WIDTH / 2 - 50, 50);
+        g2d.drawString(text, PANEL_WIDTH / 2 - 50, 25);
     }
     private void drawText(Graphics2D g2d){
         g2d.setFont(new Font("Arial", Font.BOLD, 15));
-        g2d.drawString(playerTurnText, PANEL_WIDTH/2 - 120, 70);
+        g2d.drawString(playerTurnText, PANEL_WIDTH/2 - 120, 50);
     }
     //</editor-fold>
     
     @Override public void actionPerformed(ActionEvent ae) {
-        if (!isComputer) {
+        if (!isComputerPlaying) {
             doAction(ae);
         } else {
             if (playFirst == numberOfPlayer)
@@ -227,17 +233,17 @@ public class Panel extends JPanel implements ActionListener {
         playerTurnText = LanguagePack.setText(LanguagePack.getLanguage(), "Player ")
                 + ((player) ? ("1") : ("2"))
                 + " " + LanguagePack.setText(LanguagePack.getLanguage(), "take")
-                + " " + numberOfApples + " " + LanguagePack.setText(LanguagePack.getLanguage(), "apples")
+                + " " + numberOfApples + " " + LanguagePack.setText(LanguagePack.getLanguage(), "fruits")
                 + " "  + LanguagePack.setText(LanguagePack.getLanguage(), "from")
-                + " " + LanguagePack.setText(LanguagePack.getLanguage(), "Tree ") + tree;
+                + " " + LanguagePack.setText(LanguagePack.getLanguage(), "Stock ") + tree;
     } 
     private boolean isComputerMove(){
         int nimSum = 0;
         int treesInPlay = 0;
-        for(int i = 0; i < numberOfTree-1; i++){
+        for(int i = 0; i < numberOfStock-1; i++){
             nimSum = basket[i].getMaxCount()^ basket[i+1].getMaxCount();
         }
-        for(int i = 0; i < numberOfTree; i++)
+        for(int i = 0; i < numberOfStock; i++)
             if(basket[i].getMaxCount() > 0)
                 treesInPlay++;
         if(typeOfGame.equals(GameType.NORMAL))
@@ -248,7 +254,7 @@ public class Panel extends JPanel implements ActionListener {
     }
     private boolean NormalPlay(int nimSum, int treesInPlay){
         if(nimSum == 0){
-            for(int i = 0; i < numberOfTree; i++)
+            for(int i = 0; i < numberOfStock; i++)
                 if(basket[i].getMaxCount() > 0)
                 {
                     basket[i].setCount(1);
@@ -258,7 +264,7 @@ public class Panel extends JPanel implements ActionListener {
                 }
         }
         else{
-            for(int i = 0; i < numberOfTree; i++)
+            for(int i = 0; i < numberOfStock; i++)
             {
                 if((basket[i].getMaxCount() ^ nimSum) < basket[i].getMaxCount()){
                     basket[i].setCount(basket[i].getMaxCount() - (basket[i].getMaxCount() ^ nimSum));
@@ -272,7 +278,7 @@ public class Panel extends JPanel implements ActionListener {
     }
     private boolean MiserePlay(int nimSum, int treesInPlay) {
         if(treesInPlay == 1)
-                for(int i = 0; i < numberOfTree; i++)
+                for(int i = 0; i < numberOfStock; i++)
                 {
                     if(basket[i].getMaxCount() > 1)
                     {
@@ -287,7 +293,7 @@ public class Panel extends JPanel implements ActionListener {
                 int sizeOne = 0;
                 int counter = 0;
                 int[] index = new int[treesInPlay];
-                for(int i = 0; i < numberOfTree; i++)
+                for(int i = 0; i < numberOfStock; i++)
                 {
                     if(basket[i].getMaxCount() > 0)
                         index[counter++] = i;
@@ -313,7 +319,7 @@ public class Panel extends JPanel implements ActionListener {
                 }
             }
             if(nimSum == 0){
-            for(int i = 0; i < numberOfTree; i++)
+            for(int i = 0; i < numberOfStock; i++)
                 if(basket[i].getMaxCount() > 0)
                 {
                     basket[i].setCount(1);
@@ -323,7 +329,7 @@ public class Panel extends JPanel implements ActionListener {
                 }
         }
         else{
-            for(int i = 0; i < numberOfTree; i++)
+            for(int i = 0; i < numberOfStock; i++)
             {
                 if((basket[i].getMaxCount() ^ nimSum) < basket[i].getMaxCount()){
                     basket[i].setCount(basket[i].getMaxCount() - (basket[i].getMaxCount() ^ nimSum));
@@ -339,12 +345,12 @@ public class Panel extends JPanel implements ActionListener {
     private void doAction(ActionEvent ae) {
         int substringIndex = ae.toString().indexOf(" on ");
         int indexOfClickedButton = Integer.parseInt(ae.toString().substring(substringIndex + 4));
-        if (indexOfClickedButton != numberOfTree) {
+        if (indexOfClickedButton != numberOfStock) {
             
             if(!clicked){
                 finished.setEnabled(true);
                 tempMaxCount = basket[indexOfClickedButton].getMaxCount();
-                for (int j = 0; j < numberOfTree; j++) {
+                for (int j = 0; j < numberOfStock; j++) {
                     if (j != indexOfClickedButton) {
                         basketButton[j].setVisible(false);
                     }
@@ -362,7 +368,7 @@ public class Panel extends JPanel implements ActionListener {
         } else {
             if (clicked) {
                 moveDone();
-                if (isComputer) {
+                if (isComputerPlaying) {
                     computerMove();
                 }
                 clicked = false;
@@ -370,7 +376,7 @@ public class Panel extends JPanel implements ActionListener {
         }
     }
     private void moveDone(){
-        for (int j = 0; j < numberOfTree; j++) {
+        for (int j = 0; j < numberOfStock; j++) {
             basket[j].setCount(0);
             if (basket[j].getMaxCount() != 0) {
                 basketButton[j].setVisible(true);
@@ -385,7 +391,7 @@ public class Panel extends JPanel implements ActionListener {
     }
     private boolean removeApples(int i, int numberOfApples){
         if (basket[i].getCount() > 0) {
-            if(isComputer && (playFirst != numberOfPlayer))
+            if(isComputerPlaying && (playFirst != numberOfPlayer))
             {
                 setPlayerTurnText(numberOfApples, numberOfPlayer, (i+1));
             }
@@ -393,7 +399,7 @@ public class Panel extends JPanel implements ActionListener {
             int removeApples = numberOfApples;
             basket[i].setMaxCount(basket[i].getMaxCount() - removeApples);
             while (removeApples > 0) {
-                apple[i][j--].setAppleExistance(false);
+                fruits[i][j--].setFruitExistance(false);
                 removeApples--;
             }
             return true;
@@ -402,7 +408,7 @@ public class Panel extends JPanel implements ActionListener {
     }
     private void isFinished() {
         boolean finish = false;
-        for (int i = 0; i < numberOfTree; i++) {
+        for (int i = 0; i < numberOfStock; i++) {
             if (basket[i].getMaxCount() > 0) {
                 finish = false;
                 break;
